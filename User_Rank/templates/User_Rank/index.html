@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="author" content="Team404">
+        <meta name="discription" content="提取CodeForces题目xml文件，获取用户近期排名情况">
+        <meta charset="utf-8">
+        <title>CodeForces提取器</title>
+        <link href="{% static 'User_Rank/style.css' %}" rel="stylesheet">
+        <script src="{% static 'User_Rank/main.js' %}" defer></script>
+    </head>
+
+
+    <body>
+        <header>
+            <h1>CodeForces提取器</h1>
+        </header>
+
+        <!-- <button id="btn1">题目XML提取</button> -->
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="hidden" id="user_name" name="user_name">
+            <input type="submit" id="btn2" value="用户排名查询" class="class1">
+        </form>
+
+        {% if FOUND == True %}
+        {% else %}
+            {% if error_text %}
+                <p>{{ error_text }}</p>
+            {% endif %}
+        {% endif %}
+
+        <footer>
+            <p>©Team404</p>
+        </footer>
+    </body>
+</html>
+

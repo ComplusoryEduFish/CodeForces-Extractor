@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ECharts</title>
+    <!-- 引入刚刚下载的 ECharts 文件 -->
+    <script src="{% static 'User_Rank/echarts.js' %}"></script>
+  </head>
+
+
+  <body>
+    <form>
+        <input type="hidden" name="xlist" id="xlist">
+        <input type="hidden" name="ylist" id="ylist">
+    </form>
+    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+    <div id="main" style="width: 1800px;height:600px;"></div>
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实   例
+      var myChart = echarts.init(document.getElementById('main'));
+
+      // 指定图表的配置项和数据
+      var option = {
+        title: {
+          text: '[{{ user_name|safe }}]的积分表'
+        },
+        tooltip: {},
+        legend: {
+          data: ['销量']
+        },
+        xAxis: {
+            type: 'category',
+            data: {{ ylist|safe }}
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+            data: {{ xlist|safe }},
+            type: 'line',
+            smooth: true
+            }
+        ]
+      };
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+    </script>
+  </body>
+</html>
