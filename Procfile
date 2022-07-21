@@ -1,1 +1,1 @@
-web: gunicorn User_Rank.wsgi --log-file -
+web: gunicorn CF_Extractor.wsgi --log-file -
